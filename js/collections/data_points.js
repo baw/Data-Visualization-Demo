@@ -10,7 +10,7 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
         var startDate = new Date(DVD.today);
         startDate.setDate(DVD.today.getDate() - numDays);
         
-        return this.filter(function (dp) {
+        var filtered =  this.filter(function (dp) {
             var normalizedDate = dp.get("date");
             normalizedDate.setHours(0);
             normalizedDate.setMinutes(0);
@@ -18,5 +18,7 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
             
             return startDate <= normalizedDate && normalizedDate <= DVD.today;
         });
+        
+        return new DVD.Collections.DataPoints(filtered);
     }
 });
