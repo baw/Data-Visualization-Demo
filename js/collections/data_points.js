@@ -2,6 +2,10 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
     model: DVD.Models.DataPoints,
     url: "/data/data_with_locations.min.json",
     
+    deviceCount: function () {
+        return this.countBy("device");
+    },
+    
     genderCount: function () {
         return this.countBy("gender");
     },
