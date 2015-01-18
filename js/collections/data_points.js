@@ -3,6 +3,30 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
     model: DVD.Models.DataPoints,
     url: "/data/data_with_locations.min.json",
     
+    activityHourlyBreakdown: function () {
+        var groupedByHour = this.groupBy(function (dp) {
+          var date = new Date(dp.get("date"));
+          date.setMinutes(0);
+          date.setSeconds(0);
+          
+          return date.getTime();
+        });
+        
+        var breakdown = {};
+        _(groupedByHour).each(function (dps, time) {
+            var sum = 0;
+            var total = dps.length;
+            
+            _(dps).each(function (dp) {
+                sum += parseInt(dp.get("activity"), 10);
+            });
+            
+            breakdown[time] = sum / total;
+        });
+        
+        return breakdown;
+    },
+    
     deviceCount: function () {
         return this.countBy("device");
     },
