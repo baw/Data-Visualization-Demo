@@ -2,6 +2,10 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
     model: DVD.Models.DataPoints,
     url: "/data/data_with_locations.min.json",
     
+    genderCount: function () {
+        return this.countBy("gender");
+    },
+    
     withinPastDays: function (numDays) {
         var startDate = new Date(DVD.today);
         startDate.setDate(DVD.today.getDate() - numDays);
