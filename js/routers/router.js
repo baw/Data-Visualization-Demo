@@ -7,8 +7,11 @@ DVD.Routers.Router = Backbone.Router.extend({
     },
     
     mainContent: function () {
+        DVD.Collections.data_points = new DVD.Collections.DataPoints();
+        DVD.Collections.data_points.fetch();
+        
         var mainView = new DVD.Views.MainView({
-            collection: dps
+            collection: DVD.Collections.data_points
         });
         
         this._swapViews(mainView);
