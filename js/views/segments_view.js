@@ -1,17 +1,31 @@
 DVD.Views.SegmentsView = Backbone.View.extend({
     template: JST["segments"],
     
+    initialize: function () {
+        this.listenTo(this.collection, "sync", this.updateCount);
+    },
+    
     render: function () {
-        var genderCount = this.collection.genderCount();
-        
-        var renderedContent = this.template({
-            totalCount: (genderCount.male + genderCount.femaleCount),
-            maleCount: genderCount.male,
-            femaleCount: genderCount.female
-        });
+        var renderedContent = this.template();
         
         this.$el.html(renderedContent);
         
+        this.updateCount();
+        
         return this;
+    },
+    
+    updateCount: function () {
+        var genderCount = this.collection.genderCount();
+
+        this.$("#totalCount").text(genderCount.female + genderCount.male);
+        this.$("#maleCount").text(genderCount.male);
+        this.$("#femaleCount").text(genderCount.female);
+    },
+    
+    updateWithDifferentData: function (data) {
+        this.collection = data;
+        
+        this.updateCount();
     }
 });
