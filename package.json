@@ -1,0 +1,10 @@
+{
+  "name": "DataVisualizationDemo",
+  "version": "0.0.0",
+  "description": "Data Visualization Demo",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:brianweiser/data-visualization-demo.git"
+  },
+  "author": "Brian Weiser"
+}
