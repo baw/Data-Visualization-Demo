@@ -3,12 +3,10 @@ DVD.Routers.Router = Backbone.Router.extend({
         "": "mainContent"
     },
     initialize: function (options) {
-        console.log("router initialize");
         this.$rootEl = options.$rootEl;
     },
     
     mainContent: function () {
-        console.log("mainContent");
         var mainView = new DVD.Views.MainView({
             collection: dps
         });
