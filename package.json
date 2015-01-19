@@ -6,5 +6,9 @@
     "type": "git",
     "url": "git@bitbucket.org:brianweiser/data-visualization-demo.git"
   },
-  "author": "Brian Weiser"
+  "author": "Brian Weiser",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jst": "^0.6.0"
+  }
 }
