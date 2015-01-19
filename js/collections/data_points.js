@@ -35,6 +35,14 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
         return this.countBy("gender");
     },
     
+    oneGender: function (gender) {
+        var filtered = this.filter(function (dp) {
+            return dp.get("gender") === gender;
+        });
+        
+        return new DVD.Collections.DataPoints(filtered);
+    },
+    
     withinPastDays: function (numDays) {
         var startDate = new Date(DVD.today);
         startDate.setDate(DVD.today.getDate() - numDays);
