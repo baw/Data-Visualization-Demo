@@ -20,6 +20,7 @@ DVD.Views.MainView = Backbone.View.extend({
         this.$el.html(renderedContent);
         
         this.renderSegements();
+        this.renderLineChart();
         
         return this;
     },
@@ -32,9 +33,24 @@ DVD.Views.MainView = Backbone.View.extend({
         this.$("#segments").html(this.segments.render().$el);
     },
     
+    renderLineChart: function () {
+        var $lineChart = this.$("#line_chart").css({
+            "height": "300px",
+            "width": "960px"
+        });
+        
+        this.lineChart = new DVD.Views.LineChartView({
+            collection: this.collection,
+            el: $lineChart.get(0)
+        });
+        
+        this.lineChart.render();
+    },
+    
     updateForNumDays: function (numDays) {
         var data = this.collection.withinPastDays(numDays);
         
         this.segments.updateWithDifferentData(data);
+        this.lineChart.updateWithDifferentData(data);
     }
 });
