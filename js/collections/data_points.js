@@ -12,7 +12,7 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
           return date.getTime();
         });
         
-        var breakdown = {};
+        var breakdown = [];
         _(groupedByHour).each(function (dps, time) {
             var sum = 0;
             var total = dps.length;
@@ -21,7 +21,7 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
                 sum += parseInt(dp.get("activity"), 10);
             });
             
-            breakdown[time] = sum / total;
+            breakdown.push([time, (sum / total) * 100]);
         });
         
         return breakdown;
