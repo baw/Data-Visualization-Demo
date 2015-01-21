@@ -21,6 +21,7 @@ DVD.Views.MainView = Backbone.View.extend({
         
         this.renderSegements();
         this.renderLineChart();
+        this.renderPieChart();
         
         return this;
     },
@@ -47,10 +48,25 @@ DVD.Views.MainView = Backbone.View.extend({
         this.lineChart.render();
     },
     
+    renderPieChart: function () {
+        var $pieChart = this.$("#pie_chart").css({
+            "height": "300px",
+            "width" : "430px"
+        });
+        
+        this.pieChart = new DVD.Views.PieChartView({
+            collection: this.collection,
+            el: $pieChart.get(0)
+        });
+        
+        this.pieChart.render();
+    },
+    
     updateForNumDays: function (numDays) {
         var data = this.collection.withinPastDays(numDays);
         
         this.segments.updateWithDifferentData(data);
         this.lineChart.updateWithDifferentData(data);
+        this.pieChart.updateWithDifferentData(data);
     }
 });
