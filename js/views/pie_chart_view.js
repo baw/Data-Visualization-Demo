@@ -14,7 +14,7 @@ DVD.Views.PieChartView = Backbone.View.extend({
         
         var deviceCount = this.collection.deviceCount();
         var data = _(deviceCount).map(function (value, key) { return [key, value]; });
-        console.log(data);
+        
         var margins = {
             "top": 20,
             "right": 20,
