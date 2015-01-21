@@ -63,7 +63,6 @@ DVD.Views.MainView = Backbone.View.extend({
     },
     
     clearUpdates: function () {
-        console.log(this.collection);
         this.updateCharts(this.collection);
     },
     
