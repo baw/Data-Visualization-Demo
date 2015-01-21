@@ -1,8 +1,17 @@
 DVD.Views.SegmentsView = Backbone.View.extend({
     template: JST["segments"],
+    events: {
+        "click #allButton": "allEventCallback",
+        "click #maleButton": "maleEventCallback",
+        "click #femaleButton": "femaleEventCallback"
+    },
     
-    initialize: function () {
+    initialize: function (options) {
         this.listenTo(this.collection, "sync", this.updateCount);
+        
+        this.allEventCallback = options.allEventCallback;
+        this.femaleEventCallback = options.femaleEventCallback;
+        this.maleEventCallback = options.maleEventCallback;
     },
     
     render: function () {
