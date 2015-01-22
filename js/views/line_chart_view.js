@@ -57,7 +57,6 @@ DVD.Views.LineChartView = Backbone.View.extend({
         
         var x1 = xSeries[0];
         var y1 = leastSquaresCoeff[0] + leastSquaresCoeff[1];
-        var x2 = xSeries[xSeries.length - 1];
         var y2 = (leastSquaresCoeff[0] * xSeries.length) + leastSquaresCoeff[1];
         
         var that = this;
