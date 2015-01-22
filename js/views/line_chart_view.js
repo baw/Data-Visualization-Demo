@@ -1,11 +1,19 @@
 // Trendline calculations from: http://bl.ocks.org/benvandyke/8459843
 
 DVD.Views.LineChartView = Backbone.View.extend({
+    events: {
+        "click #trendlineToggle": "trendlineToggle"
+    },
+    template: JST["line_chart_view"],
+    
     initialize: function () {
         this.listenTo(this.collection, "sync", this.createChart);
     },
     
     render: function () {
+        var renderedContent = this.template();
+        this.$el.html(renderedContent);
+        
         this.createChart();
         
         return this;
@@ -53,7 +61,7 @@ DVD.Views.LineChartView = Backbone.View.extend({
         var y2 = (leastSquaresCoeff[0] * xSeries.length) + leastSquaresCoeff[1];
         
         var that = this;
-        this.chart.append("line")
+        this.trendline = this.chart.append("line")
             .attr("class", "trend-line")
             .attr("x1", function () { return that.xScale(data[0][0]); })
             .attr("y1", function () { return that.yScale(y1); })
@@ -63,10 +71,12 @@ DVD.Views.LineChartView = Backbone.View.extend({
             .attr("stroke-width", 1)
             .style("color", "blue")
             .attr("transform", "translate(20, 0)");
+        
+        $("#trendlineToggle").text("Remove Trendline");
     },
     
     createChart: function () {
-        d3.select(this.el).select("svg").remove();
+        d3.select(this.$("#chart").get(0)).select("svg").remove();
         
         var data = this.collection.activityHourlyBreakdown();
         
@@ -79,7 +89,7 @@ DVD.Views.LineChartView = Backbone.View.extend({
         this.width = this.$el.width() - margins.left - margins.right;
         this.height = this.$el.height() - margins.top - margins.bottom;
         
-        this.chart = d3.select(this.el).append("svg")
+        this.chart = d3.select(this.$("#chart").get(0)).append("svg")
                 .attr("width",  margins.left + this.width + margins.right)
                 .attr("height", margins.top + this.height + margins.bottom)
             .append("g")
@@ -126,13 +136,31 @@ DVD.Views.LineChartView = Backbone.View.extend({
             .attr("class", "y axis")
             .attr("transform", "translate(20, 0)")
             .call(yAxis);
+    },
+    
+    removeTrendLine: function () {
+        this.trendline.remove();
         
-        this.addTrendLine();
+        this.trendline = undefined;
+        
+        $("#trendlineToggle").text("Add Trendline");
+    },
+    
+    trendlineToggle: function () {
+        if (this.trendline === undefined) {
+            this.addTrendLine();
+        } else {
+            this.removeTrendLine();
+        }
     },
     
     updateWithDifferentData: function (data) {
         this.collection = data;
         
         this.createChart();
+        
+        if (this.trendline !== undefined) {
+            this.addTrendLine();
+        }
     }
 });
