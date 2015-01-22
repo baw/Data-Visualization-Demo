@@ -111,21 +111,21 @@ DVD.Views.LineChartView = Backbone.View.extend({
             .x(function (d) { return that.xScale(d[0]); })
             .y(function (d) { return that.yScale(d[1]); });
         
+        this.chart.append("path")
+            .datum(data)
+            .attr("class", "mean-line line")
+            .attr("transform", "translate(20, 0)")
+            .attr("d", this.line);
+        
         this.chart.append("g")
-            .attr("class", "xAxis")
+            .attr("class", "x axis")
             .attr("transform", "translate(20," + this.height + ")")
             .call(xAxis);
         
         this.chart.append("g")
-            .attr("class", "yAxis")
+            .attr("class", "y axis")
             .attr("transform", "translate(20, 0)")
             .call(yAxis);
-        
-        this.chart.append("path")
-            .datum(data)
-            .attr("class", "mean-line")
-            .attr("transform", "translate(20, 0)")
-            .attr("d", this.line);
         
         this.addTrendLine();
     },
