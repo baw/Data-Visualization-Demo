@@ -13,7 +13,9 @@ DVD.Views.PieChartView = Backbone.View.extend({
         d3.select(this.el).select("svg").remove();
         
         var deviceCount = this.collection.deviceCount();
-        var data = _(deviceCount).map(function (value, key) { return [key, value]; });
+        var data = _(deviceCount).map(function convertObjectToArray(value, key) {
+            return [key, value];
+        });
         
         var margins = {
             "top": 20,
