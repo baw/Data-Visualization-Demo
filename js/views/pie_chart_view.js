@@ -32,7 +32,7 @@ DVD.Views.PieChartView = Backbone.View.extend({
             .innerRadius(0);
         
         var pie = d3.layout.pie()
-            .value(function (d) { return [1]; });
+            .value(function (d) { return d[1]; });
         
         this.chart = d3.select(this.el).append("svg")
                 .attr("width",  margins.left + this.width + margins.right)
