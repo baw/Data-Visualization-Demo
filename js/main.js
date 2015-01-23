@@ -3,7 +3,7 @@ window.DVD = {
     Collections: {},
     Views: {},
     Routers: {},
-    
+    Utl: {},
     today: new Date("July 31, 2014"),
     
     initialize: function () {
