@@ -4,6 +4,9 @@ DVD.Views.PieChartView = Backbone.View.extend({
     },
     
     render: function () {
+        var $title = $("<h2></h2>").text("Devices");
+        this.$el.append($title)
+        
         this.createChart();
         
         return this;
@@ -41,8 +44,8 @@ DVD.Views.PieChartView = Backbone.View.extend({
                 .attr("height", margins.top + this.height + margins.bottom)
             .append("g")
                 .attr("transform",
-                      "translate(" + (this.width / 2) + "," +
-                                     (this.height / 2) + ")");
+                      "translate(" + ((this.width / 2) + margins.left) + "," +
+                                     ((this.height / 2) + margins.top) + ")");
         
         var g = this.chart.selectAll(".arc")
             .data(pie(data))

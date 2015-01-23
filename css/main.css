@@ -1,0 +1,50 @@
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+}
+
+.left, .right {
+  display: inline-block;
+  width: 48%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+ul.buttons {
+  padding-left: 0;
+  list-style: none;
+}
+
+ul.buttons li {
+  display: inline-block;
+}
+
+.selected {
+  background-color: black;
+  color: white;
+}
+
+h2 {
+  text-align: center;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  stroke-width:1.5px;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}

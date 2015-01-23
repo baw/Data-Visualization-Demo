@@ -1,9 +1,9 @@
 DVD.Views.MainView = Backbone.View.extend({
     events: {
-        "click #buttons #today": "today",
-        "click #buttons #three_days": "threeDays",
-        "click #buttons #seven_days": "sevenDays",
-        "click #buttons #fifteen_days": "fifteenDays"
+        "click #day_buttons #today": "today",
+        "click #day_buttons #three_days": "threeDays",
+        "click #day_buttons #seven_days": "sevenDays",
+        "click #day_buttons #fifteen_days": "fifteenDays"
     },
     template: JST["main_view"],
     
@@ -66,7 +66,10 @@ DVD.Views.MainView = Backbone.View.extend({
         this.collection.clearGender();
     },
     
-    updateForNumDays: function (numDays) {
+    updateForNumDays: function (numDays, e) {
         this.collection.withinPastDays(numDays);
+        
+        this.$("#day_buttons button").removeClass("selected");
+        this.$(e.target).addClass("selected");
     }
 });
