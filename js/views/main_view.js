@@ -28,10 +28,7 @@ DVD.Views.MainView = Backbone.View.extend({
     
     renderSegements: function () {
         this.segments = new DVD.Views.SegmentsView({
-            collection: this.collection,
-            allEventCallback: this.clearUpdates.bind(this),
-            femaleEventCallback: this.updateForGender.bind(this, "female"),
-            maleEventCallback: this.updateForGender.bind(this, "male")
+            collection: this.collection
         });
         
         this.$("#segments").html(this.segments.render().$el);
@@ -67,10 +64,6 @@ DVD.Views.MainView = Backbone.View.extend({
     
     clearUpdates: function () {
         this.collection.clearGender();
-    },
-    
-    updateForGender: function (gender) {
-        this.collection.oneGender(gender);
     },
     
     updateForNumDays: function (numDays) {
