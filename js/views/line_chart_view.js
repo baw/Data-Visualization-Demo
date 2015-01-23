@@ -8,6 +8,8 @@ DVD.Views.LineChartView = Backbone.View.extend({
     
     initialize: function () {
         this.listenTo(this.collection, "sync", this.createChart);
+        this.listenTo(this.collection, "filtered", this.updateCharts);
+        this.collection.trigger("update");
     },
     
     render: function () {
@@ -153,9 +155,7 @@ DVD.Views.LineChartView = Backbone.View.extend({
         }
     },
     
-    updateWithDifferentData: function (data) {
-        this.collection = data;
-        
+    updateCharts: function () {
         this.createChart();
         
         if (this.trendline !== undefined) {

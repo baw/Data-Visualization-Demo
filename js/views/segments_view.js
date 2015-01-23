@@ -7,11 +7,19 @@ DVD.Views.SegmentsView = Backbone.View.extend({
     },
     
     initialize: function (options) {
-        this.listenTo(this.collection, "sync", this.updateCount);
-        
-        this.allEventCallback = options.allEventCallback;
-        this.femaleEventCallback = options.femaleEventCallback;
-        this.maleEventCallback = options.maleEventCallback;
+        this.listenTo(this.collection, "sync filtered", this.updateCount);
+    },
+    
+    allEventCallback: function () {
+        this.collection.clearGender();
+    },
+     
+    femaleEventCallback: function () {
+        this.collection.oneGender("female");
+    },
+     
+    maleEventCallback: function () {
+        this.collection.oneGender("male");
     },
     
     render: function () {
@@ -30,11 +38,5 @@ DVD.Views.SegmentsView = Backbone.View.extend({
         this.$("#totalCount").text(genderCount.female + genderCount.male || 0);
         this.$("#maleCount").text(genderCount.male || 0);
         this.$("#femaleCount").text(genderCount.female || 0);
-    },
-    
-    updateWithDifferentData: function (data) {
-        this.collection = data;
-        
-        this.updateCount();
     }
 });

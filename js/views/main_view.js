@@ -66,24 +66,14 @@ DVD.Views.MainView = Backbone.View.extend({
     },
     
     clearUpdates: function () {
-        this.updateCharts(this.collection);
-    },
-    
-    updateCharts: function (data) {
-        this.segments.updateWithDifferentData(data);
-        this.lineChart.updateWithDifferentData(data);
-        this.pieChart.updateWithDifferentData(data);
+        this.collection.clearGender();
     },
     
     updateForGender: function (gender) {
-        var data = this.collection.oneGender(gender);
-        
-        this.updateCharts(data);
+        this.collection.oneGender(gender);
     },
     
     updateForNumDays: function (numDays) {
-        var data = this.collection.withinPastDays(numDays);
-        
-        this.updateCharts(data);
+        this.collection.withinPastDays(numDays);
     }
 });

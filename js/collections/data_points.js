@@ -1,4 +1,4 @@
-DVD.Collections.DataPoints = Backbone.Collection.extend({
+DVD.Collections.DataPoints = DVD.Utl.FilteredCollection.extend({
     comparator: "date",
     model: DVD.Models.DataPoints,
     url: "/data/data_with_locations.min.json",
@@ -27,6 +27,10 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
         return breakdown;
     },
     
+    clearGender: function () {
+        this.removeFilter("gender");
+    },
+    
     deviceCount: function () {
         return this.countBy("device");
     },
@@ -36,18 +40,16 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
     },
     
     oneGender: function (gender) {
-        var filtered = this.filter(function (dp) {
+        this.addFilter("gender", function (dp) {
             return dp.get("gender") === gender;
         });
-        
-        return new DVD.Collections.DataPoints(filtered);
     },
     
     withinPastDays: function (numDays) {
         var startDate = new Date(DVD.today);
         startDate.setDate(DVD.today.getDate() - numDays);
         
-        var filtered =  this.filter(function (dp) {
+        this.addFilter("days", function (dp) {
             var normalizedDate = new Date(dp.get("date"));
             normalizedDate.setHours(0);
             normalizedDate.setMinutes(0);
@@ -55,7 +57,5 @@ DVD.Collections.DataPoints = Backbone.Collection.extend({
             
             return startDate <= normalizedDate && normalizedDate <= DVD.today;
         });
-        
-        return new DVD.Collections.DataPoints(filtered);
     }
 });

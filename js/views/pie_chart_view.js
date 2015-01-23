@@ -1,6 +1,6 @@
 DVD.Views.PieChartView = Backbone.View.extend({
     initialize: function () {
-        this.listenTo(this.collection, "sync", this.createChart);
+        this.listenTo(this.collection, "sync filtered", this.createChart);
     },
     
     render: function () {
@@ -58,11 +58,5 @@ DVD.Views.PieChartView = Backbone.View.extend({
             .attr("dy", ".35em")
             .style("text-anchor", "middle")
             .text(function (d) { return d.data[0]; });
-    },
-    
-    updateWithDifferentData: function (data) {
-        this.collection = data;
-        
-        this.createChart();
     }
 });
