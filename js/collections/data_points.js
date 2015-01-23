@@ -1,7 +1,7 @@
 DVD.Collections.DataPoints = DVD.Utl.FilteredCollection.extend({
     comparator: "date",
     model: DVD.Models.DataPoints,
-    url: "/data/data_with_locations.min.json",
+    url: "data/data_with_locations.min.json",
     
     activityHourlyBreakdown: function () {
         var groupedByHour = this.groupBy(function (dp) {
