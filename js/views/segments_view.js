@@ -47,9 +47,12 @@ DVD.Views.SegmentsView = Backbone.View.extend({
     
     updateCount: function () {
         var genderCount = this.collection.genderCount();
-
-        this.$("#totalCount").text(genderCount.female + genderCount.male || 0);
-        this.$("#maleCount").text(genderCount.male || 0);
-        this.$("#femaleCount").text(genderCount.female || 0);
+        
+        var maleCount = (genderCount.male || 0);
+        var femaleCount = (genderCount.female || 0);
+        
+        this.$("#total_count").text(maleCount + femaleCount);
+        this.$("#male_count").text(maleCount);
+        this.$("#female_count").text(femaleCount);
     }
 });
