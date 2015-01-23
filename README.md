@@ -1,5 +1,5 @@
 # Data-Visualization-Demo
-This site visualizes activity data using the D3 library with a line chart and pie chart.
+[This site](http://imamathwiz.github.io/Data-Visualization-Demo/) visualizes activity data using the D3 library to display a line chart and pie chart of the data.
 
 ## Libraries Used
 * Backbone
