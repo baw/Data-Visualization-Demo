@@ -26,6 +26,11 @@ ul.buttons li {
   display: inline-block;
 }
 
+.trendlineButton {
+  width: auto;
+  margin-top: -36px;
+}
+
 .selected {
   background-color: black;
   color: white;

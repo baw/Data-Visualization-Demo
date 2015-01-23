@@ -4,7 +4,7 @@ this["JST"]["line_chart_view"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="chart"></div>\n<div><button id="trendlineToggle">Add Trendline</button></div>';
+__p += '<div class="right trendlineButton"><button id="trendlineToggle">Add Trendline</button></div>\n<div id="chart"></div>';
 
 }
 return __p
