@@ -16,7 +16,8 @@ module.exports = function (grunt) {
             options: {
                 mangle: {
                     except: ["$", "Backbone", "_", "DVD"]
-                }
+                },
+                sourceMap: true
             },
             my_target: {
                 files: {
