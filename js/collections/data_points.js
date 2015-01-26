@@ -57,5 +57,42 @@ DVD.Collections.DataPoints = DVD.Utl.FilteredCollection.extend({
             
             return startDate <= normalizedDate && normalizedDate <= DVD.today;
         });
+    },
+    
+    worldData: function () {
+        this.removeFilter("location");
+        
+        var groupByCountry = this.groupBy(function (dp) {
+            return dp.get("country");
+        });
+        
+        var results = _(groupByCountry).reduce(this._reduceToPercents, {});
+        console.log(results);
+        return results;
+    },
+    
+    usaData: function () {
+        this.addFilter("location", function (dp) {
+            return dp.country === "USA";
+        });
+        
+        var groupByState = this.groupBy(function (dp) {
+            return dp.get("state");
+        });
+        
+        return _(groupByState).reduce(this._reduceToPercents, {});
+    },
+    
+    _reduceToPercents: function (acc, dps, loc) {
+        var total = dps.length;
+        var sum = 0;
+        
+        _(dps).each(function (dp) {
+            sum += dp.get("activity");
+        });
+        
+        acc[loc] = (sum/total);
+        
+        return acc;
     }
 });
