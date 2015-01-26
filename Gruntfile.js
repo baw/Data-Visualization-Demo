@@ -32,7 +32,10 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: ["js/**/*.js", "js/templates/*.jst"],
+                files: ["js/**/*.js",
+                        "js/templates/*.jst",
+                        "!js/templates.js",
+                        "!js/source.min.js"],
                 tasks: ["build"]
             }
         }
