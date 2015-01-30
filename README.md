@@ -8,4 +8,4 @@
 * jQuery
 
 ## Todos
-* Use [D3 datamaps](https://github.com/markmarkoh/datamaps) library to show locations of data points
+* ~~Use [D3 datamaps](https://github.com/markmarkoh/datamaps) library to show locations of data points~~
