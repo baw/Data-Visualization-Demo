@@ -24,7 +24,7 @@ this["JST"]["map_view"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<h2>Rate of activity</h2>\n<div id="map" class="map"></div>';
+__p += '<h2>Rate of activity</h2>\n<div>\n  <button id="world_button" class="selected" data-location="world">World</button>\n  <button id="usa_button" data-location="usa">USA</button>\n</div>\n<div id="map" class="map"></div>';
 
 }
 return __p

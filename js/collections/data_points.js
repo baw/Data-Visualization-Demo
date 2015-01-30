@@ -68,7 +68,7 @@ DVD.Collections.DataPoints = DVD.Utl.FilteredCollection.extend({
         this._locationAccessor = "state";
         
         this.addFilter("location", function (dp) {
-            return dp.country === "USA";
+            return dp.get("country") === "USA";
         });
     },
     
