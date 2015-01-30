@@ -1,7 +1,9 @@
 DVD.Views.MapView = Backbone.View.extend({
     template: JST["map_view"],
     initialize: function () {
-        this.listenTo(this.collection, "sync", this.createMap.bind(this, "world"));
+        this.listenTo(this.collection,
+                      "sync filtered",
+                      this.createMap.bind(this, "world"));
     },
     
     render: function () {
@@ -13,17 +15,13 @@ DVD.Views.MapView = Backbone.View.extend({
     },
     
     createMap: function (location) {
+        this.$("#map").html("");
+        
         if (typeof location === "undefined") {
             location = "world";
         }
         
-        var data;
-        if (location === "world") {
-            data = this.collection.worldData();
-        } else {
-            data = this.collection.usaData();
-        }
-        
+        var data = this.collection.locationData();
         var mapData = this.createMapData(data);
         
         this.map = new Datamap({
