@@ -32,6 +32,7 @@ DVD.Views.MapView = Backbone.View.extend({
             fills: mapData.fills,
             data: mapData.data,
             geographyConfig: {
+                borderColor: "#000",
                 popupOnHover: true,
                 popupTemplate: function(geography, data) {
                     var results = '<div class="hoverinfo"><strong>' +
