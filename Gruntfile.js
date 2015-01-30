@@ -16,7 +16,8 @@ module.exports = function (grunt) {
             options: {
                 mangle: {
                     except: ["$", "Backbone", "_", "DVD"]
-                }
+                },
+                sourceMap: true
             },
             my_target: {
                 files: {
@@ -29,11 +30,21 @@ module.exports = function (grunt) {
                                       "js/views/*.js"]
                 }
             }
+        },
+        watch: {
+            scripts: {
+                files: ["js/**/*.js",
+                        "js/templates/*.jst",
+                        "!js/templates.js",
+                        "!js/source.min.js"],
+                tasks: ["build"]
+            }
         }
     });
 
     grunt.loadNpmTasks("grunt-contrib-jst");
     grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("grunt-contrib-watch");
 
     grunt.registerTask("precompile", ["jst"]);
     grunt.registerTask("build", ["jst", "uglify"]);

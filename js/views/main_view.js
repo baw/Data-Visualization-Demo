@@ -22,6 +22,7 @@ DVD.Views.MainView = Backbone.View.extend({
         this.renderSegements();
         this.renderLineChart();
         this.renderPieChart();
+        this.renderMap();
         
         return this;
     },
@@ -48,9 +49,20 @@ DVD.Views.MainView = Backbone.View.extend({
         this.lineChart.render();
     },
     
+    renderMap: function () {
+        var $map = this.$("#map_view");
+        
+        this.map = new DVD.Views.MapView({
+            collection: this.collection,
+            el: $map.get(0)
+        });
+        
+        this.map.render();
+    },
+    
     renderPieChart: function () {
         var $pieChart = this.$("#pie_chart").css({
-            "height": "300px",
+            "height": "430px",
             "width" : "430px"
         });
         

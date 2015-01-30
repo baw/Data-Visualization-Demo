@@ -53,3 +53,15 @@ h2 {
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+
+.map_view {
+  height: 500px;
+  width: 960px;
+  clear: both;
+}
+
+.map {
+  height: 450px;
+  width: 960px;
+  position: relative;
+}

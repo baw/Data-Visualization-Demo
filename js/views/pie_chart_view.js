@@ -23,7 +23,7 @@ DVD.Views.PieChartView = Backbone.View.extend({
         var margins = {
             "top": 20,
             "right": 20,
-            "bottom": 20,
+            "bottom": 100,
             "left": 20
         };
         this.width = this.$el.width() - margins.left - margins.right;

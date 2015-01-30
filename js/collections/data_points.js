@@ -57,5 +57,42 @@ DVD.Collections.DataPoints = DVD.Utl.FilteredCollection.extend({
             
             return startDate <= normalizedDate && normalizedDate <= DVD.today;
         });
+    },
+    
+    removeLocation: function () {
+        this._locationAccessor = "country";
+        this.removeFilter("location");
+    },
+    
+    setUSA: function () {
+        this._locationAccessor = "state";
+        
+        this.addFilter("location", function (dp) {
+            return dp.get("country") === "USA";
+        });
+    },
+    
+    locationData: function () {
+        var that = this;
+        var groupBy = this.groupBy(function (dp) {
+            return dp.get(that._locationAccessor);
+        });
+        
+        return _(groupBy).reduce(this._reduceToPercents, {});
+    },
+    
+    _locationAccessor: "country",
+    
+    _reduceToPercents: function (acc, dps, loc) {
+        var total = dps.length;
+        var sum = 0;
+        
+        _(dps).each(function (dp) {
+            sum += dp.get("activity");
+        });
+        
+        acc[loc] = (sum/total);
+        
+        return acc;
     }
 });
